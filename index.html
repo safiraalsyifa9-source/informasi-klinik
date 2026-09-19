@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Klinik</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">+</div>
+            <div>
+                <h2>KlinikCare</h2>
+                <span>Medical System</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-link" data-page="pasien">
+                <span>👤</span>
+                Data Pasien
+            </a>
+
+            <a href="#" class="nav-link" data-page="dokter">
+                <span>👨‍⚕️</span>
+                Data Dokter
+            </a>
+
+            <a href="#" class="nav-link" data-page="jadwal">
+                <span>📅</span>
+                Jadwal Dokter
+            </a>
+
+            <a href="#" class="nav-link" data-page="pemeriksaan">
+                <span>🩺</span>
+                Pemeriksaan
+            </a>
+
+            <a href="#" class="nav-link" data-page="obat">
+                <span>💊</span>
+                Data Obat
+            </a>
+
+            <a href="#" class="nav-link" data-page="pembayaran">
+                <span>💳</span>
+                Pembayaran
+            </a>
+
+            <a href="#" class="nav-link" data-page="riwayat">
+                <span>📋</span>
+                Riwayat
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin">
+                <div class="admin-avatar">A</div>
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Selamat datang di Sistem Informasi Klinik</p>
+            </div>
+
+            <div class="topbar-right">
+                <div class="date" id="tanggal"></div>
+                <div class="notification">🔔</div>
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" class="page active-page">
+
+            <div class="welcome">
+                <div>
+                    <span>SELAMAT DATANG 👋</span>
+                    <h2>Kelola Klinik Lebih Mudah</h2>
+                    <p>
+                        Kelola pasien, dokter, pemeriksaan dan data klinik
+                        dalam satu sistem.
+                    </p>
+                </div>
+
+                <div class="welcome-icon">🏥</div>
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">👤</div>
+                    <div>
+                        <span>Total Pasien</span>
+                        <h3 id="totalPasien">0</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">👨‍⚕️</div>
+                    <div>
+                        <span>Total Dokter</span>
+                        <h3 id="totalDokter">0</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">🩺</div>
+                    <div>
+                        <span>Pemeriksaan</span>
+                        <h3 id="totalPemeriksaan">0</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">💊</div>
+                    <div>
+                        <span>Jenis Obat</span>
+                        <h3 id="totalObat">0</h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="content-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Pemeriksaan Terbaru</h3>
+                            <p>Data pemeriksaan pasien terbaru</p>
+                        </div>
+
+                        <button
+                            class="btn-outline"
+                            onclick="bukaHalaman('pemeriksaan')">
+                            Lihat Semua
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pasien</th>
+                                    <th>Dokter</th>
+                                    <th>Keluhan</th>
+                                    <th>Tanggal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="dashboardPemeriksaan"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Informasi Klinik</h3>
+                            <p>Informasi layanan</p>
+                        </div>
+                    </div>
+
+                    <div class="info-list">
+
+                        <div class="info-item">
+                            <span>🕐</span>
+                            <div>
+                                <strong>Jam Operasional</strong>
+                                <p>08.00 - 20.00 WIB</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span>📞</span>
+                            <div>
+                                <strong>Telepon</strong>
+                                <p>0812-3456-7890</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span>📍</span>
+                            <div>
+                                <strong>Alamat</strong>
+                                <p>Jl. Kesehatan No. 10</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PASIEN ================= -->
+        <section id="pasien" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Data Pasien</h2>
+                    <p>Kelola data pasien klinik</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalPasien()">
+                    + Tambah Pasien
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="toolbar">
+
+                    <input
+                        type="text"
+                        id="searchPasien"
+                        placeholder="🔎 Cari nama pasien..."
+                        oninput="tampilkanPasien()">
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>No. Pasien</th>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Umur</th>
+                                <th>No. Telepon</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelPasien"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DOKTER ================= -->
+        <section id="dokter" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Data Dokter</h2>
+                    <p>Kelola data dokter klinik</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalDokter()">
+                    + Tambah Dokter
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="toolbar">
+
+                    <input
+                        type="text"
+                        id="searchDokter"
+                        placeholder="🔎 Cari nama dokter..."
+                        oninput="tampilkanDokter()">
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID Dokter</th>
+                                <th>Nama Dokter</th>
+                                <th>Spesialis</th>
+                                <th>No. Telepon</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelDokter"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= JADWAL ================= -->
+        <section id="jadwal" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Jadwal Dokter</h2>
+                    <p>Jadwal praktik dokter</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalJadwal()">
+                    + Tambah Jadwal
+                </button>
+
+            </div>
+
+
+            <div class="schedule-grid" id="jadwalList"></div>
+
+        </section>
+
+
+        <!-- ================= PEMERIKSAAN ================= -->
+        <section id="pemeriksaan" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Pemeriksaan</h2>
+                    <p>Data pemeriksaan pasien</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalPemeriksaan()">
+                    + Pemeriksaan Baru
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Pasien</th>
+                                <th>Dokter</th>
+                                <th>Keluhan</th>
+                                <th>Diagnosa</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelPemeriksaan"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= OBAT ================= -->
+        <section id="obat" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Data Obat</h2>
+                    <p>Kelola stok obat klinik</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalObat()">
+                    + Tambah Obat
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="toolbar">
+
+                    <input
+                        type="text"
+                        id="searchObat"
+                        placeholder="🔎 Cari nama obat..."
+                        oninput="tampilkanObat()">
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kode</th>
+                                <th>Nama Obat</th>
+                                <th>Kategori</th>
+                                <th>Stok</th>
+                                <th>Harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelObat"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PEMBAYARAN ================= -->
+        <section id="pembayaran" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Pembayaran</h2>
+                    <p>Kelola pembayaran pasien</p>
+                </div>
+
+                <button class="btn-primary" onclick="bukaModalPembayaran()">
+                    + Pembayaran Baru
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Pasien</th>
+                                <th>Layanan</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelPembayaran"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RIWAYAT ================= -->
+        <section id="riwayat" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Riwayat Pemeriksaan</h2>
+                    <p>Riwayat pemeriksaan pasien</p>
+                </div>
+
+                <button class="btn-outline" onclick="cetakRiwayat()">
+                    🖨 Cetak
+                </button>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Pasien</th>
+                                <th>Dokter</th>
+                                <th>Keluhan</th>
+                                <th>Diagnosa</th>
+                                <th>Resep</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelRiwayat"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL PASIEN ================= -->
+
+    <div class="modal" id="modalPasien">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Tambah Pasien</h3>
+                <button onclick="tutupModal('modalPasien')">×</button>
+            </div>
+
+            <form onsubmit="simpanPasien(event)">
+
+                <input type="hidden" id="pasienEdit">
+
+                <label>Nama Pasien</label>
+                <input type="text" id="namaPasien" required>
+
+                <label>Jenis Kelamin</label>
+                <select id="jkPasien" required>
+                    <option value="">Pilih</option>
+                    <option>Laki-laki</option>
+                    <option>Perempuan</option>
+                </select>
+
+                <label>Umur</label>
+                <input type="number" id="umurPasien" required>
+
+                <label>No. Telepon</label>
+                <input type="text" id="teleponPasien" required>
+
+                <label>Alamat</label>
+                <textarea id="alamatPasien" required></textarea>
+
+                <button class="btn-primary full">
+                    Simpan Pasien
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL DOKTER ================= -->
+
+    <div class="modal" id="modalDokter">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Tambah Dokter</h3>
+                <button onclick="tutupModal('modalDokter')">×</button>
+            </div>
+
+            <form onsubmit="simpanDokter(event)">
+
+                <label>Nama Dokter</label>
+                <input type="text" id="namaDokter" required>
+
+                <label>Spesialis</label>
+                <input type="text" id="spesialisDokter" required>
+
+                <label>No. Telepon</label>
+                <input type="text" id="teleponDokter" required>
+
+                <button class="btn-primary full">
+                    Simpan Dokter
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL JADWAL ================= -->
+
+    <div class="modal" id="modalJadwal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Tambah Jadwal</h3>
+                <button onclick="tutupModal('modalJadwal')">×</button>
+            </div>
+
+            <form onsubmit="simpanJadwal(event)">
+
+                <label>Dokter</label>
+                <select id="jadwalDokter" required></select>
+
+                <label>Hari</label>
+                <select id="hariJadwal" required>
+                    <option value="">Pilih Hari</option>
+                    <option>Senin</option>
+                    <option>Selasa</option>
+                    <option>Rabu</option>
+                    <option>Kamis</option>
+                    <option>Jumat</option>
+                    <option>Sabtu</option>
+                </select>
+
+                <label>Jam Praktik</label>
+                <input type="text" id="jamJadwal" placeholder="08.00 - 12.00" required>
+
+                <button class="btn-primary full">
+                    Simpan Jadwal
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL PEMERIKSAAN ================= -->
+
+    <div class="modal" id="modalPemeriksaan">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Pemeriksaan Baru</h3>
+                <button onclick="tutupModal('modalPemeriksaan')">×</button>
+            </div>
+
+            <form onsubmit="simpanPemeriksaan(event)">
+
+                <label>Pasien</label>
+                <select id="pemeriksaanPasien" required></select>
+
+                <label>Dokter</label>
+                <select id="pemeriksaanDokter" required></select>
+
+                <label>Keluhan</label>
+                <textarea id="keluhan" required></textarea>
+
+                <label>Diagnosa</label>
+                <textarea id="diagnosa" required></textarea>
+
+                <label>Resep / Obat</label>
+                <textarea id="resep" placeholder="Contoh: Paracetamol 3x1"></textarea>
+
+                <button class="btn-primary full">
+                    Simpan Pemeriksaan
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL OBAT ================= -->
+
+    <div class="modal" id="modalObat">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Tambah Obat</h3>
+                <button onclick="tutupModal('modalObat')">×</button>
+            </div>
+
+            <form onsubmit="simpanObat(event)">
+
+                <label>Nama Obat</label>
+                <input type="text" id="namaObat" required>
+
+                <label>Kategori</label>
+                <select id="kategoriObat" required>
+                    <option value="">Pilih</option>
+                    <option>Tablet</option>
+                    <option>Kapsul</option>
+                    <option>Sirup</option>
+                    <option>Salep</option>
+                </select>
+
+                <label>Stok</label>
+                <input type="number" id="stokObat" required>
+
+                <label>Harga</label>
+                <input type="number" id="hargaObat" required>
+
+                <button class="btn-primary full">
+                    Simpan Obat
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MODAL PEMBAYARAN ================= -->
+
+    <div class="modal" id="modalPembayaran">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Pembayaran Baru</h3>
+                <button onclick="tutupModal('modalPembayaran')">×</button>
+            </div>
+
+            <form onsubmit="simpanPembayaran(event)">
+
+                <label>Pasien</label>
+                <select id="pembayaranPasien" required></select>
+
+                <label>Layanan</label>
+                <input type="text" id="layananBayar" required>
+
+                <label>Total Pembayaran</label>
+                <input type="number" id="totalBayar" required>
+
+                <button class="btn-primary full">
+                    Simpan Pembayaran
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
